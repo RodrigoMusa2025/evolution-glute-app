@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EvolutionGlute.IA - Rutinas para Glúteos</title>
+    
+    <meta name="theme-color" content="#F0218B">
+    <link rel="apple-touch-icon" href="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/1e9600f3-7bbc-4f34-a86b-6b899f888ff2.png">
+    <link rel="manifest" id="manifest">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://player.vimeo.com/api/player.js"></script>
+    
+
+    <style>
+        /* FUENTE Y ESTILOS GENERALES */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+        /* PALETA DE COLORES - MODO FEMENINO Y ENERGÉTICO */
+        :root {
+            --color-primary: #F0218B;   /* Rosa Fuerte Energético */
+            --color-primary-dark: #C2185B;/* Rosa Oscuro */
+            --color-secondary: #e74c3c;   /* Rojo para alertas/reemplazos */
+            --color-accent: #f0f0f0;     /* Blanco roto para acentos sutiles */
+            --color-dark: #0a0a0a;       /* Negro profundo */
+            --color-light: #ffffff;
+            --color-panel: rgba(20, 20, 20, 0.85); /* Panel carbón semi-transparente */
+            --color-card: #2b2b2b;       /* Gris oscuro para tarjetas */
+            --color-card-darker: #1c1c1c; /* Gris más oscuro */
+            --color-text: #ecf0f1;
+            --color-border: #444444;     /* Borde gris medio */
+            --color-success: #27ae60;     /* Verde éxito */
+            --glow-primary: rgba(240, 33, 139, 0.6);
+            --glow-accent: rgba(240, 240, 240, 0.5);
+        }
+
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            background-color: var(--color-dark);
+            /* Fondo negro con patrón y acentos rosados */
+            background-image: 
+                linear-gradient(rgba(240, 33, 139, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(240, 33, 139, 0.05) 1px, transparent 1px),
+                radial-gradient(circle at 20% 30%, rgba(240, 33, 139, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(240, 33, 139, 0.1), transparent 35%);
+            background-size: 40px 40px, 40px 40px, 100% 100%, 100% 100%;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: var(--color-text);
+        }
+
+        .brazo-app-container {
+            background-color: var(--color-panel);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 900px;
+            margin: 2rem auto;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .brazo-app-section { display: none; }
+        .brazo-app-section.active { display: block; animation: fadeIn 0.5s ease-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        h1, h2, h3 { 
+            text-shadow: 0px 2px 8px rgba(0,0,0,0.7);
+        }
+        h1 { font-size: 2.5em; font-weight: 900; color: var(--color-light); letter-spacing: -1px; }
+        h1 strong { color: var(--color-primary); text-shadow: 0 0 10px var(--glow-primary); }
+        h2 { font-size: 2.2em; margin-bottom: 2rem; color: var(--color-primary); }
+        h3 { font-size: 1.6em; color: var(--color-light); margin-top: 1rem; margin-bottom: 1rem; }
+        p { font-size: 1.1em; line-height: 1.7; max-width: 600px; margin: 0 auto 1.5rem auto; color: rgba(236, 240, 241, 0.85); }
+
+        /* Botones premium */
+        .brazo-app-btn {
+            background: linear-gradient(145deg, var(--color-card-darker), #333);
+            color: var(--color-primary); 
+            border: 2px solid var(--color-border);
+            padding: 15px 35px; font-size: 18px;
+            font-weight: 700; border-radius: 12px; cursor: pointer; transition: all 0.2s ease-out;
+            margin: 10px; text-transform: uppercase;
+            text-shadow: 0 0 8px var(--glow-primary);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            will-change: transform;
+        }
+        .brazo-app-btn:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 15px var(--glow-primary);
+        }
+        .brazo-app-btn:active {
+            transform: translateY(-1px) scale(0.98);
+        }
+        .brazo-app-btn:disabled {
+            background: var(--color-border); box-shadow: none; cursor: not-allowed;
+            transform: none; filter: brightness(0.8); color: #888; text-shadow: none;
+        }
+        .brazo-app-btn-secondary {
+            background: transparent;
+            border-color: var(--color-border);
+            color: var(--color-text);
+            text-shadow: none;
+        }
+        .brazo-app-btn-secondary:hover {
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+            background: var(--color-card-darker);
+        }
+        
+        #routine-generator .generator-form .form-grid, .auth-form .form-grid {
+            display: grid; grid-template-columns: 1fr; gap: 25px;
+        }
+        @media (min-width: 768px) {
+            #routine-generator .generator-form .form-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+        #routine-generator .form-group, .auth-form .form-group { display: flex; flex-direction: column; text-align: left; }
+
+        #routine-generator .form-group label, .auth-form .form-group label {
+            font-size: 1.1em; font-weight: 700; margin-bottom: 12px;
+            color: var(--color-primary);
+        }
+        #routine-generator .form-group select, #routine-generator .form-group input, .auth-form .form-group input {
+            background-color: var(--color-card-darker);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            border-radius: 8px; padding: 12px; font-size: 1em;
+            width: 100%; box-sizing: border-box;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        #routine-generator .form-group select:focus, #routine-generator .form-group input:focus, .auth-form .form-group input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+        
+        #routine-generator .checkbox-group {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 12px; background-color: var(--color-card-darker); padding: 15px;
+            border-radius: 8px; border: 2px solid var(--color-border);
+        }
+        #routine-generator .checkbox-group label {
+            font-size: 0.95em; font-weight: 400; color: var(--color-text);
+            display: flex; align-items: center; cursor: pointer; gap: 8px; margin-bottom: 0;
+        }
+        .checkbox-group label i {
+            color: var(--color-primary); width: 20px; text-align: center;
+        }
+        #routine-generator .checkbox-group input[type="checkbox"] { width: auto; }
+
+        .time-slider-container { display: flex; align-items: center; gap: 15px; }
+        input[type="range"] {
+            -webkit-appearance: none; appearance: none; width: 100%; height: 6px;
+            background: var(--color-border); border-radius: 5px; outline: none; transition: opacity .2s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 24px; height: 24px;
+            background: var(--color-primary); cursor: pointer; border-radius: 50%;
+            border: 3px solid var(--color-light);
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 24px; height: 24px; background: var(--color-primary); cursor: pointer;
+            border-radius: 50%; border: 3px solid var(--color-light); box-shadow: 0 0 10px var(--glow-primary);
+        }
+        #tiempo-output {
+            font-weight: bold; color: var(--color-primary); font-size: 1.2em;
+            min-width: 40px; text-align: center;
+        }
+
+        .form-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; justify-content: center;}
+        #generate-routine-btn {
+            background: linear-gradient(145deg, var(--color-primary), var(--color-primary-dark));
+            color: var(--color-light);
+            border-color: var(--color-primary-dark);
+            text-shadow: none;
+            padding: 20px; font-size: 1.2em; font-weight: 900;
+            border-radius: 12px; cursor: pointer; transition: all 0.2s ease-out;
+            flex-grow: 1; margin: 0;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5), 0 0 20px var(--glow-primary);
+        }
+        #generate-routine-btn:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-primary);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5), 0 0 15px var(--glow-primary);
+            filter: brightness(1.1);
+        }
+        #surprise-btn { padding: 20px; font-size: 1.2em; margin: 0; flex-shrink: 0; }
+        
+        /* Modificación para una transición instantánea */
+        .exercise-container { 
+            background-color: var(--color-card-darker); 
+            padding: 1.5rem; 
+            border-radius: 12px; 
+            margin-bottom: 1rem; 
+            border: 1px solid var(--color-border); 
+            display: none; /* Ocultar por defecto */
+            opacity: 0;
+        }
+        .exercise-container.active { 
+            display: block; /* Mostrar de forma instantánea */
+            opacity: 1;
+            transition: opacity 0.4s ease-out; /* Mantenemos un fade-in suave */
+            border: 1px solid var(--color-primary);
+            box-shadow: 0 0 15px var(--glow-primary); 
+        }
+
+        .exercise-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+        .exercise-header h3 { margin: 0; color: var(--color-primary); text-shadow: 0 0 5px var(--glow-primary); }
+        .replace-exercise-btn {
+            background: none; border: 1px solid var(--color-secondary); color: var(--color-secondary);
+            border-radius: 50%; width: 35px; height: 35px; cursor: pointer;
+            transition: all 0.3s ease; font-size: 16px;
+        }
+        .replace-exercise-btn:hover {
+            background-color: var(--color-secondary); color: var(--color-light);
+            transform: rotate(90deg); box-shadow: 0 0 10px var(--color-secondary);
+        }
+        .exercise-gif-placeholder { 
+            border-radius: 12px; 
+            overflow: hidden; 
+            background-color: #0a0a0a;
+            position: relative;
+            height: 0;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            margin: auto; 
+            margin-bottom: 0.5rem !important;
+            cursor: pointer;
+        }
+        .exercise-gif-placeholder iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            border:0;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(0, 0, 0, 0.7);
+            transition: opacity 0.3s ease;
+            opacity: 1;
+        }
+        .video-overlay:hover {
+            opacity: 0.8;
+        }
+
+        .video-overlay .fa-play {
+            font-size: 4em;
+            color: var(--color-primary);
+            text-shadow: 0 0 15px var(--glow-primary);
+        }
+
+        /* Estilo para el mensaje de error cuando el video no carga */
+        .video-error-message {
+            color: var(--color-secondary);
+            font-size: 1em;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-align: center;
+        }
+        .video-error-message i {
+            font-size: 1.5em;
+        }
+
+        .technique-toggle-btn { background: none; border: 1px solid var(--color-border); color: var(--color-accent); padding: 5px 15px; font-size: 0.9em; border-radius: 8px; cursor: pointer; margin: 0.5rem auto !important; display: block; }
+        .technique-toggle-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+        .technique-toggle-btn .fa-chevron-down { transition: transform 0.3s ease; }
+        .technique-toggle-btn.open .fa-chevron-down { transform: rotate(180deg); }
+        .exercise-details { text-align: left; max-width: 500px; margin: 10px auto 0 auto; max-height: 0; overflow: hidden; transition: max-height 0.5s ease-out, padding 0.5s ease-out; padding: 0 15px; }
+        .exercise-details.visible { max-height: 500px; padding: 15px; background-color: rgba(0,0,0,0.2); border-left: 3px solid var(--color-primary); border-radius: 0 5px 5px 0; }
+        
+        .sets-tracker-pro { margin-top: 1rem; max-width: 500px; margin-left: auto; margin-right: auto; display: flex; flex-direction: column; gap: 0.5rem; }
+        .set-item { display: flex; align-items: center; background: var(--color-card); padding: 0.75rem 1rem; border-radius: 12px; transition: all 0.2s ease; border-left: 5px solid var(--color-border); cursor: pointer; }
+        .set-item:hover { transform: translateX(5px); border-left-color: var(--color-primary); }
+        .set-item.completed { border-left-color: var(--color-success); background: linear-gradient(to right, #2a4d39, #2e4a3b); cursor: default; }
+        .set-number { font-size: 1.1em; font-weight: 900; margin-right: 10px; color: var(--color-accent); }
+        .set-target { flex-grow: 1; text-align: left; font-size: 1em; pointer-events: none; }
+        .set-actions { display: flex; align-items: center; gap: 6px; }
+        .set-check-icon { width: 30px; height: 30px; border-radius: 50%; border: 2px solid var(--color-light); transition: all 0.3s ease; display: flex; justify-content: center; align-items: center; }
+        .set-item.completed .set-check-icon { background-color: var(--color-success); border-color: var(--color-success); transform: scale(1.1); }
+        .set-check-icon .fa-solid { font-size: 14px; color: var(--color-dark); opacity: 0; transition: opacity 0.3; }
+        .set-item.completed .set-check-icon .fa-solid { opacity: 1; }
+        .set-log-toggle { background-color: rgba(255, 255, 255, 0.1); border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; transition: all 0.3s; display: flex; justify-content: center; align-items: center; }
+        .set-log-toggle:hover { background-color: rgba(255, 255, 255, 0.2); transform: scale(1.1); }
+        .set-log-toggle .fa-solid { font-size: 12px; color: var(--color-light); }
+        .set-log-inputs { display: none; margin-top: 10px; padding: 8px; background-color: rgba(0,0,0,0.2); border-radius: 6px; flex-direction: column; gap: 6px; }
+        .set-log-inputs.visible { display: flex; animation: slideDown 0.3s ease-out; }
+        .set-log-inputs input { width: 100%; box-sizing: border-box; padding: 8px; background-color: #333; border: 1px solid #555; border-radius: 4px; color: white;}
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .timers-container { 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 20px; 
+            margin: 15px 0; 
+            font-size: 1.4em; 
+            font-weight: bold; 
+        }
+        #timer-wrapper, #rest-timer-wrapper { text-align: center; }
+        #timer-wrapper span, #rest-timer-wrapper span { font-size: 0.55em; text-transform: uppercase; opacity: 0.8; color: var(--color-accent); display: block; }
+        .timer-display { background-color: var(--color-card-darker); padding: 8px 15px; border-radius: 8px; min-width: 100px; box-shadow: inset 0 2px 4px rgba(0,0,0,0.4); }
+        #rest-timer-wrapper { display: none; }
+        #rest-timer { color: var(--color-secondary); text-shadow: 0 0 10px var(--color-secondary); }
+        
+        /* Controles de la rutina en la parte inferior */
+        .workout-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            align-items: center;
+        }
+
+        @media (min-width: 600px) {
+            .workout-controls {
+                flex-direction: row;
+                justify-content: center;
+            }
+        }
+
+        #settings-view .settings-group, .results-card { background-color: var(--color-card); border-radius: 10px; padding: 20px; max-width: 600px; margin: 0 auto 20px auto; }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: none; justify-content: center; align-items: center; z-index: 2000; backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); background-color: rgba(0,0,0,0.7); animation: fadeInModal 0.3s; }
+        .modal-overlay.active { display: flex; }
+        .modal-content { background: var(--color-dark); border: 1px solid var(--color-primary); border-radius: 15px; text-align: center; width: 90%; max-width: 400px; box-shadow: 0 5px 20px rgba(0,0,0,0.5), 0 0 20px var(--glow-primary); padding: 20px; transform: scale(0.95); animation: zoomInModal 0.3s forwards; }
+        #modal-buttons { display: flex; justify-content: center; gap: 15px; margin-top: 20px; }
+        
+        @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes zoomInModal { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .spinner {
+            border: 4px solid var(--color-border);
+            border-top: 4px solid var(--color-primary);
+            border-radius: 50%; width: 40px; height: 40px;
+            animation: spin 1s linear infinite; margin: 20px auto 0 auto;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        .routine-section-title {
+            color: var(--color-primary);
+            font-size: 1.4em; text-transform: uppercase;
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 10px; margin-top: 30px; margin-bottom: 20px;
+        }
+
+        .auth-form { max-width: 400px; margin: 0 auto; }
+        .auth-switch { margin-top: 20px; }
+        .auth-switch button { background: none; border: none; color: var(--color-primary); cursor: pointer; text-decoration: underline; }
+
+        .progress-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            text-align: left;
+        }
+        .progress-form .form-group input {
+            background-color: var(--color-card-darker);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text);
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .progress-form .form-group textarea {
+            background-color: var(--color-card-darker);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            color: var(--color-text);
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            min-height: 100px;
+        }
+        .progress-form .form-group label {
+            color: var(--color-accent);
+            font-weight: 700;
+        }
+
+        .progress-card {
+            background-color: var(--color-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: left;
+        }
+        .progress-card h4 {
+            color: var(--color-primary);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .progress-card p {
+            margin: 5px 0;
+            font-size: 1em;
+        }
+
+        /* ESTILOS PARA LA CREACIÓN DE RUTINAS PERSONALIZADAS */
+        .exercise-search {
+            margin-bottom: 20px;
+        }
+        
+        .exercise-search input {
+            background-color: var(--color-card-darker);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1em;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .exercise-search input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        .exercise-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-filters select {
+            background-color: var(--color-card-darker);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 10px;
+            font-size: 0.95em;
+        }
+
+        .exercise-list {
+            max-height: 400px;
+            overflow-y: auto;
+            background-color: var(--color-card-darker);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--color-card);
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .exercise-item:hover {
+            background-color: var(--color-border);
+            transform: translateX(5px);
+        }
+
+        .exercise-item.selected {
+            background-color: var(--color-primary);
+            color: var(--color-dark);
+        }
+
+        .exercise-item.selected .exercise-name {
+            color: var(--color-dark);
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            color: var(--color-text);
+            flex-grow: 1;
+        }
+
+        .exercise-category {
+            font-size: 0.8em;
+            color: var(--color-accent);
+            margin-left: 10px;
+            background-color: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .selected-exercises {
+            background-color: var(--color-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 100px;
+        }
+
+        .selected-exercise-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--color-card-darker);
+            padding: 12px;
+            margin-bottom: 8px;
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .selected-exercise-info {
+            flex-grow: 1;
+        }
+
+        .selected-exercise-name {
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 4px;
+        }
+
+        .selected-exercise-settings {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .selected-exercise-settings input {
+            width: 80px;
+            background-color: var(--color-card);
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 6px;
+            color: var(--color-text);
+            text-align: center;
+        }
+
+        .remove-exercise-btn {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-exercise-btn:hover {
+            background-color: #c0392b;
+            transform: scale(1.1);
+        }
+
+        .saved-routine-card {
+            background-color: var(--color-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .saved-routine-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .saved-routine-name {
+            font-size: 1.4em;
+            font-weight: 700;
+            color: var(--color-primary);
+        }
+
+        .saved-routine-exercises {
+            color: var(--color-accent);
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        .saved-routine-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .routine-action-btn {
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            border: 1px solid var(--color-border);
+            background-color: var(--color-card-darker);
+            color: var(--color-text);
+            transition: all 0.3s ease;
+        }
+
+        .routine-action-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .routine-action-btn.delete {
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        .routine-action-btn.delete:hover {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+        }
+
+        .custom-routine-input {
+            background-color: var(--color-card-darker);
+            color: var(--color-text);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            width: 100%;
+            box-sizing: border-box;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .custom-routine-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        @media (max-width: 768px) { 
+            .brazo-app-container { margin: 20px 10px; padding: 15px; } 
+            h1 {font-size: 2.2em;} 
+            .exercise-filters {
+                grid-template-columns: 1fr;
+            }
+            .selected-exercise-settings {
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            .saved-routine-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="brazo-app-container">
+
+    <div id="login-view" class="brazo-app-section active">
+        <h1><strong>Evolution</strong>Glute</h1>
+        <p>Inicia sesión para acceder a tus rutinas de glúteos.</p>
+        
+        <form id="login-form" class="auth-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Contraseña</label>
+                    <input type="password" id="login-password" required>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="brazo-app-btn">Ingresar</button>
+            </div>
+        </form>
+
+        <form id="register-form" class="auth-form" style="display:none; margin-top: 20px;">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Contraseña</label>
+                    <input type="password" id="register-password" required minlength="6" placeholder="Mínimo 6 caracteres">
+                </div>
+                <div class="form-group">
+                    <label for="register-password-confirm">Confirmar Contraseña</label>
+                    <input type="password" id="register-password-confirm" required minlength="6" placeholder="Repite la contraseña">
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" class="brazo-app-btn">Crear Cuenta</button>
+            </div>
+        </form>
+
+        <div class="auth-switch">
+            <button id="toggle-auth-mode" class="brazo-app-btn brazo-app-btn-secondary">¿No tienes cuenta? Regístrate</button>
+        </div>
+    </div>
+    
+    <div id="welcome" class="brazo-app-section">
+        <h1><strong>Evolution</strong>Glute</h1>
+        <p id="welcome-message">Tu entrenadora de glúteos inteligente. Define tus objetivos y deja que la IA cree la rutina perfecta para ti. ¿Lista para construir tu mejor versión?</p>
+        
+        <button id="install-pwa-btn" class="brazo-app-btn" style="display: none; background: var(--color-success); border-color: #2ecc71; color: var(--color-light); text-shadow: none;">
+            <i class="fa-solid fa-download"></i> Instalar App en tu Celular
+        </button>
+
+        <div id="subscription-area" style="margin: 20px 0;">
+            <div id="wallet_container"></div>
+            <div id="subscription-active-message" style="display:none;">
+                <p style="color: var(--color-success); font-weight: bold;">✅ ¡Tu suscripción está activa! Disfruta de todo el contenido.</p>
+            </div>
+        </div>
+        <div id="main-app-buttons">
+            <button class="brazo-app-btn" data-target="routine-generator">Generar con IA</button>
+            <button class="brazo-app-btn brazo-app-btn-secondary" data-target="custom-routine-creator">Crear Mi Rutina</button>
+            <button class="brazo-app-btn brazo-app-btn-secondary" data-target="saved-routines-view">Mis Rutinas</button>
+            <button class="brazo-app-btn brazo-app-btn-secondary" data-target="progress-view">Mi Progreso</button>
+            <button class="brazo-app-btn brazo-app-btn-secondary" data-target="settings-view">Ajustes</button>
+        </div>
+        </div>
+
+    <div id="custom-routine-creator" class="brazo-app-section">
+        <h2>Crea tu Rutina de Glúteos</h2>
+        <p>Busca en nuestra biblioteca de ejercicios y arma el entrenamiento perfecto.</p>
+
+        <input type="text" id="custom-routine-name" class="custom-routine-input" placeholder="Nombre de tu rutina..." maxlength="50">
+
+        <div class="exercise-search">
+            <input type="text" id="exercise-search-input" placeholder="Buscar ejercicio...">
+        </div>
+
+        <div class="exercise-filters">
+            <select id="category-filter">
+                <option value="">Todos los Grupos</option>
+                <option value="compuestos">Compuestos (Glúteos y Piernas)</option>
+                <option value="gluteos">Énfasis en Glúteos</option>
+                <option value="piernas">Énfasis en Piernas</option>
+            </select>
+            
+            <select id="equipment-filter">
+                <option value="">Todo el Equipamiento</option>
+                <option value="peso corporal">Peso Corporal</option>
+                <option value="mancuernas">Mancuernas</option>
+                <option value="barra">Barra</option>
+                <option value="polea">Polea</option>
+                <option value="maquina">Máquina</option>
+                <option value="bandas">Bandas</option>
+            </select>
+            
+            <select id="level-filter">
+                <option value="">Todos los Niveles</option>
+                <option value="principiante">Principiante</option>
+                <option value="intermedio">Intermedio</option>
+                <option value="avanzado">Avanzado</option>
+            </select>
+
+            <select id="variation-filter">
+                <option value="">Clásicos y Variantes</option>
+                <option value="clasico">Solo Clásicos</option>
+                <option value="variante">Solo Variantes</option>
+            </select>
+        </div>
+
+        <div class="exercise-list" id="available-exercises">
+        </div>
+
+        <div class="selected-exercises">
+            <h3 style="color: var(--color-primary); margin-bottom: 15px;">Ejercicios Seleccionados (<span id="selected-count">0</span>)</h3>
+            <div id="selected-exercises-list">
+                <p style="color: var(--color-accent); text-align: center;">Selecciona ejercicios de la lista superior</p>
+            </div>
+        </div>
+
+        <div class="form-buttons">
+            <button id="save-custom-routine-btn" class="brazo-app-btn" disabled>
+                <i class="fa-solid fa-save"></i> Guardar Rutina
+            </button>
+            <button class="brazo-app-btn brazo-app-btn-secondary" data-target="welcome">Volver</button>
+        </div>
+    </div>
+
+    <div id="saved-routines-view" class="brazo-app-section">
+        <h2>Mis Rutinas Guardadas</h2>
+        <p>Administra y ejecuta tus rutinas personalizadas.</p>
+        <div id="saved-routines-list">
+        </div>
+        <button class="brazo-app-btn brazo-app-btn-secondary" data-target="welcome">Volver</button>
+    </div>
+    
+    <div id="routine-generator" class="brazo-app-section">
+        <h2>Generador de Rutinas con IA</h2>
+        <p>Define tus preferencias y la IA diseñará un entrenamiento a tu medida.</p>
+        <form id="generator-form" class="generator-form">
+            <div class="form-grid">
+                
+                <div class="form-group">
+                    <label for="objetivo_principal">1. ¿Cuál es tu objetivo principal?</label>
+                    <select id="objetivo_principal" name="objetivo_principal">
+                        <option value="hipertrofia">Aumentar Glúteos (Hipertrofia)</option>
+                        <option value="tonificacion">Tonificar y Definir</option>
+                        <option value="fuerza">Ganar Fuerza</option>
+                        <option value="perdida de grasa">Pérdida de Grasa</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="enfoque_dia">2. ¿En qué te quieres enfocar hoy?</label>
+                    <select id="enfoque_dia" name="enfoque_dia">
+                        <option value="gluteos">Solo Glúteos</option>
+                        <option value="piernas y gluteos">Piernas y Glúteos</option>
+                        <option value="tren inferior">Tren Inferior Completo</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="estilo_entrenamiento">3. Estilo de Entrenamiento</label>
+                    <select id="estilo_entrenamiento" name="estilo_entrenamiento">
+                        <option value="clasico">Clásico (Series y Reps)</option>
+                        <option value="circuito">Circuito (Alta Intensidad)</option>
+                        <option value="superseries">Superseries (Ahorra Tiempo)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="volumen_entrenamiento">4. Volumen del Entrenamiento</label>
+                    <select id="volumen_entrenamiento" name="volumen_entrenamiento">
+                        <option value="corto">Corto y Directo (3-4 ejercicios)</option>
+                        <option value="estandar" selected>Estándar (4-6 ejercicios)</option>
+                        <option value="extenso">Extenso y Desafiante (6-8 ejercicios)</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="nivel">5. Nivel de Experiencia</label>
+                    <select id="nivel" name="nivel">
+                        <option value="principiante">Principiante</option>
+                        <option value="intermedio" selected>Intermedio</option>
+                        <option value="avanzado">Avanzado</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tipo_variacion_ia">6. Preferencia de Ejercicios</label>
+                    <select id="tipo_variacion_ia" name="tipo_variacion_ia">
+                        <option value="">Clásicos y Variantes</option>
+                        <option value="clasico">Priorizar Clásicos</option>
+                        <option value="variante">Priorizar Variantes</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="tiempo">7. Tiempo Disponible: <span id="tiempo-output">60</span> min</label>
+                    <div class="time-slider-container">
+                                <input type="range" id="tiempo" name="tiempo" min="20" max="120" step="5" value="60">
+                    </div>
+                </div>
+
+            </div> <div class="form-group" style="margin-top: 25px;">
+                <label>8. Equipamiento Disponible</label>
+                <div id="equipamiento" class="checkbox-group">
+                    <label><i class="fa-solid fa-child"></i><input type="checkbox" name="equipamiento" value="peso corporal" checked> Peso Corporal</label>
+                    <label><i class="fa-solid fa-ring"></i><input type="checkbox" name="equipamiento" value="bandas"> Bandas</label>
+                    <label><i class="fa-solid fa-dumbbell"></i><input type="checkbox" name="equipamiento" value="mancuernas"> Mancuernas</label>
+                    <label><i class="fa-solid fa-bars"></i><input type="checkbox" name="equipamiento" value="barra"> Barra</label>
+                    <label><i class="fa-solid fa-chair"></i><input type="checkbox" name="equipamiento" value="banco"> Banco</label>
+                    <label><i class="fa-solid fa-cable-car"></i><input type="checkbox" name="equipamiento" value="polea"> Poleas</label>
+                    <label><i class="fa-brands fa-kickstarter-k"></i><input type="checkbox" name="equipamiento" value="kettlebell"> Kettlebell</label>
+                    <label><i class="fa-solid fa-gears"></i><input type="checkbox" name="equipamiento" value="maquina"> Máquinas</label>
+                </div>
+            </div>
+            
+            <div class="form-group" style="margin-top: 25px;">
+                <label for="limitaciones">9. ¿Tienes alguna lesión o limitación? (Opcional)</label>
+                <input type="text" id="limitaciones" name="limitaciones" placeholder="Ej: 'Evitar saltos', 'dolor en rodilla', etc.">
+            </div>
+
+            <div class="form-buttons">
+                <button type="submit" id="generate-routine-btn" class="brazo-app-btn">
+                    <i class="fa-solid fa-robot"></i> Generar Rutina
+                </button>
+                <button type="button" id="surprise-btn" class="brazo-app-btn brazo-app-btn-secondary">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Sorpréndeme
+                </button>
+                <button type="button" class="brazo-app-btn brazo-app-btn-secondary" data-target="welcome">Volver</button>
+            </div>
+        </form>
+    </div>
+    
+    <div id="workout-view" class="brazo-app-section">
+        <h2 id="workout-title"></h2>
+        <p id="workout-description">Completa los sets y marca tu progreso con un toque. ¡Concéntrate en la técnica!</p>
+        <div class="timers-container">
+            <div id="timer-wrapper"><span>TIEMPO TOTAL</span><div class="timer-display" id="timer">00:00:00</div></div>
+            <div id="rest-timer-wrapper"><span>DESCANSO</span><div class="timer-display" id="rest-timer">01:30</div></div>
+        </div>
+        <div id="exercises-wrapper">
+        </div>
+        <div class="workout-controls">
+            <button id="start-routine-btn" class="brazo-app-btn">Comenzar Rutina</button>
+            <button id="finish-routine-btn" class="brazo-app-btn" style="display:none; background-color: var(--color-success); border-color: var(--color-success); color: var(--color-dark); text-shadow: none;">Finalizar</button>
+            <button id="back-to-generator-btn" class="brazo-app-btn brazo-app-btn-secondary">Volver al Generador</button>
+        </div>
+    </div>
+
+    <div id="progress-view" class="brazo-app-section">
+        <h2>Mi Progreso</h2>
+        <p>Lleva un registro de tus métricas y objetivos para ver tu evolución.</p>
+        <form id="progress-form" class="progress-form">
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="progress-peso">Peso Corporal (kg)</label>
+                    <input type="number" id="progress-peso" step="0.1" placeholder="Ej: 65.5">
+                </div>
+                <div class="form-group">
+                    <label for="progress-cintura">Cintura (cm)</label>
+                    <input type="number" id="progress-cintura" step="0.1" placeholder="Ej: 70.2">
+                </div>
+                <div class="form-group">
+                    <label for="progress-cadera">Cadera/Glúteos (cm)</label>
+                    <input type="number" id="progress-cadera" step="0.1" placeholder="Ej: 98.0">
+                </div>
+                <div class="form-group">
+                    <label for="progress-piernas">Piernas (cm)</label>
+                    <input type="number" id="progress-piernas" step="0.1" placeholder="Ej: 60.5">
+                </div>
+                <div class="form-group" style="grid-column: 1 / -1;">
+                    <label for="progress-metas">Mis Metas</label>
+                    <textarea id="progress-metas" placeholder="Escribe tus metas aquí. Ej: 'Aumentar 3 cm de glúteos en 2 meses.'"></textarea>
+                </div>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" id="save-progress-btn" class="brazo-app-btn">
+                    <i class="fa-solid fa-floppy-disk"></i> Guardar Progreso
+                </button>
+            </div>
+        </form>
+        <div id="progress-display">
+        </div>
+        <button class="brazo-app-btn brazo-app-btn-secondary" data-target="welcome">Volver</button>
+    </div>
+
+    <div id="results-view" class="brazo-app-section"> <div class="results-card"> <h2>¡Rutina Completada!</h2> <p>¡Excelente trabajo! La consistencia es la clave del éxito.</p> <div id="final-results"></div> <button class="brazo-app-btn" data-target="routine-generator">Crear Nueva Rutina</button> </div> </div>
+    <div id="settings-view" class="brazo-app-section"> <h2>Ajustes</h2> <p>Personaliza tu experiencia en la aplicación.</p> <div class="settings-group"> <h3>Gestión de Cuenta</h3> <button id="logout-btn" class="brazo-app-btn brazo-app-btn-secondary">Cerrar Sesión</button></div> <button id="back-to-welcome-btn" class="brazo-app-btn brazo-app-btn-secondary" data-target="welcome">Volver al Inicio</button> </div>
+</div>
+
+<div id="modal" class="modal-overlay">
+    <div class="modal-content">
+        <p id="modal-message"></p>
+        <div id="modal-spinner" class="spinner" style="display: none;"></div>
+        <div id="modal-buttons"></div>
+    </div>
+</div>
+
+<script>
+    // Dynamically create and set the manifest to keep everything in one file
+    const manifest = {
+        "name": "EvolutionGlute.IA",
+        "short_name": "EvoGlute",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#0a0a0a",
+        "theme_color": "#F0218B",
+        "description": "Tu entrenadora de glúteos inteligente.",
+        "icons": [
+            {
+                "src": "https://placehold.co/192x192/F0218B/FFFFFF?text=EG",
+                "sizes": "192x192",
+                "type": "image/png"
+            },
+            {
+                "src": "https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ebff63a1-4c9a-4dab-9d42-b72a8fc22193.png",
+                "sizes": "512x512",
+                "type": "image/png"
+            }
+        ]
+    };
+    const manifestBlob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+    const manifestURL = URL.createObjectURL(manifestBlob);
+    document.getElementById('manifest').setAttribute('href', manifestURL);
+</script>
+
+<script src="https://sdk.mercadopago.com/js/v2"></script>
+
+<script type="module">
+    // --- IMPORTACIONES DE FIREBASE ---
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { 
+        getAuth, 
+        createUserWithEmailAndPassword, 
+        signInWithEmailAndPassword, 
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    import { 
+        getFirestore, 
+        doc, 
+        setDoc,
+        getDoc,
+        collection,
+        addDoc,
+        getDocs,
+        deleteDoc,
+        query 
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    // --- CONFIGURACIÓN DE FIREBASE ---
+    const firebaseConfig = {
+        apiKey: "AIzaSyAm73lVXPJaccAwPJs8MyP8Mh8kBrvcAMM",
+        authDomain: "appoficial-84d90.firebaseapp.com",
+        projectId: "appoficial-84d90",
+        storageBucket: "appoficial-84d90.appspot.com",
+        messagingSenderId: "879173468964",
+        appId: "1:879173468964:web:c0b715a48839bdbcd3a9b1",
+        measurementId: "G-F4591FJ9C0"
+    };
+
+    // --- INICIALIZACIÓN DE FIREBASE ---
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    let currentUserId = null;
+
+
+    // --- BASE DE DATOS DE EJERCICIOS ---
+    const exerciseDatabase = [
+        { nombre: "Sentadilla con Peso Corporal", categoria: ["piernas", "gluteos"], nivel: "principiante", equipo: ["peso corporal"], tipo_variacion: "clasico", link_video: "https://vimeo.com/1102788213", details: "El rey de los ejercicios de piernas. Baja las caderas manteniendo la espalda recta." },
+        // ... (el resto de tu larguísima base de datos de ejercicios va aquí)
+        { nombre: "Zancada Frontal con Barra", categoria: ["piernas", "gluteos"], nivel: "intermedio", equipo: ["barra"], tipo_variacion: "clasico", link_video: "https://vimeo.com/1102785868", details: "Realiza zancadas hacia adelante sosteniendo una barra sobre tu espalda." }
+    ];
+
+    
+    // ========= INICIO: LÓGICA DE MERCADO PAGO =========
+    
+    function renderCheckoutButton() {
+        // 1. Reemplaza con tu Public Key de PRUEBA
+        const mp = new MercadoPago('APP_USR-24a9d90b-61af-42ad-b738-ab8eb909bd97', {
+            locale: 'es-AR'
+        });
+
+        // Muestra un spinner mientras se carga el botón
+        document.getElementById('wallet_container').innerHTML = '<div class="spinner"></div>';
+
+        // 2. Llama a la API que creamos en Vercel
+        fetch('/api/create_preference', {
+            method: 'POST',
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.id) {
+                // 3. Si todo sale bien, se renderiza el botón de pago
+                document.getElementById('wallet_container').innerHTML = ''; // Limpia el spinner
+                mp.wallet({
+                    preferenceId: data.id,
+                    render: {
+                        container: '#wallet_container', // El div que creamos
+                        label: 'Suscribirme',
+                    }
+                });
+            } else {
+                document.getElementById('wallet_container').innerText = 'Hubo un error al preparar el pago.';
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            document.getElementById('wallet_container').innerText = 'No se pudo conectar con el servidor de pagos.';
+        });
+    }
+
+    // Esta función revisará si el usuario está suscrito o no.
+    // Por ahora es una simulación, luego la conectaremos a tu base de datos.
+    async function checkUserSubscriptionStatus() {
+        // SIMULACIÓN: Cambia "false" por "true" para ver cómo se oculta el botón de pago.
+        const isSubscribed = false; 
+
+        const subArea = document.getElementById('subscription-area');
+        const walletContainer = document.getElementById('wallet_container');
+        const activeMessage = document.getElementById('subscription-active-message');
+        const mainButtonsDiv = document.getElementById('main-app-buttons');
+
+        if (isSubscribed) {
+            walletContainer.style.display = 'none';
+            activeMessage.style.display = 'block';
+            mainButtonsDiv.style.display = 'block'; // Muestra los botones de la app
+        } else {
+            walletContainer.style.display = 'block';
+            activeMessage.style.display = 'none';
+            mainButtonsDiv.style.display = 'none'; // Oculta los botones de la app
+            renderCheckoutButton(); // Llama a la función para mostrar el botón de pago
+        }
+    }
+    
+    // ========= FIN: LÓGICA DE MERCADO PAGO =========
+
+    // --- LÓGICA DE LA APP (dentro de DOMContentLoaded para asegurar que el DOM está listo) ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // --- VARIABLES GLOBALES Y ESTADO DE LA APP ---
+        let currentGeneratedRoutine = null;
+        let lastUserPreferences = null;
+        let editingRoutineId = null;
+        let currentExerciseIndex = 0;
+        let mainTimerInterval, restTimerInterval;
+        let mainTimerSeconds = 0;
+        const REST_DURATION = 90;
+        let selectedCustomExercises = [];
+        let filteredExercises = [...exerciseDatabase];
+        let deferredPrompt; // Variable para guardar el evento de instalación
+        
+        // --- ELEMENTOS DEL DOM ---
+        const sections = document.querySelectorAll('.brazo-app-section');
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const exercisesWrapper = document.getElementById('exercises-wrapper');
+        const form = document.getElementById('generator-form');
+        const tiempoSlider = document.getElementById('tiempo');
+        const tiempoOutput = document.getElementById('tiempo-output');
+        const surpriseBtn = document.getElementById('surprise-btn');
+        const modal = document.getElementById('modal');
+        const modalMessage = document.getElementById('modal-message');
+        const modalSpinner = document.getElementById('modal-spinner');
+        const modalButtons = document.getElementById('modal-buttons');
+        const welcomeMessage = document.getElementById('welcome-message');
+        const startRoutineBtn = document.getElementById('start-routine-btn');
+        const finishRoutineBtn = document.getElementById('finish-routine-btn');
+        const backToGeneratorBtn = document.getElementById('back-to-generator-btn');
+        const progressForm = document.getElementById('progress-form');
+        const progressDisplay = document.getElementById('progress-display');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const toggleAuthModeBtn = document.getElementById('toggle-auth-mode');
+        const customRoutineNameInput = document.getElementById('custom-routine-name');
+        const exerciseSearchInput = document.getElementById('exercise-search-input');
+        const categoryFilter = document.getElementById('category-filter');
+        const equipmentFilter = document.getElementById('equipment-filter');
+        const levelFilter = document.getElementById('level-filter');
+        const variationFilter = document.getElementById('variation-filter');
+        const availableExercisesContainer = document.getElementById('available-exercises');
+        const selectedExercisesList = document.getElementById('selected-exercises-list');
+        const selectedCount = document.getElementById('selected-count');
+        const saveCustomRoutineBtn = document.getElementById('save-custom-routine-btn');
+        const savedRoutinesList = document.getElementById('saved-routines-list');
+        const installPwaBtn = document.getElementById('install-pwa-btn'); // Botón de instalación
+
+        // --- NAVEGACIÓN Y LÓGICA PRINCIPAL ---
+        window.showSection = function(sectionId) {
+            sections.forEach(section => section.classList.remove('active'));
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) activeSection.classList.add('active');
+            window.scrollTo(0, 0);
+
+            if (sectionId === 'custom-routine-creator' && !editingRoutineId) {
+                loadCustomRoutineCreator();
+            }
+            if (sectionId === 'saved-routines-view') loadSavedRoutines();
+            if (sectionId === 'progress-view') loadProgressData();
+        }
+
+        window.showModal = function(message, callback = null, showSpinner = false, type = 'info') {
+            modalMessage.textContent = message;
+            modalSpinner.style.display = showSpinner ? 'block' : 'none';
+            modalButtons.innerHTML = '';
+
+            if (callback) {
+                const okButton = document.createElement('button');
+                okButton.textContent = 'OK';
+                okButton.className = 'brazo-app-btn';
+                okButton.onclick = callback;
+                modalButtons.appendChild(okButton);
+            }
+
+            modal.classList.add('active');
+
+            if (!callback && (type === 'success' || type === 'error')) {
+                setTimeout(() => {
+                    if(modal.classList.contains('active')) hideModal();
+                }, 2500);
+            }
+        }
+
+        window.hideModal = function() {
+            modal.classList.remove('active');
+        }
+
+        window.showConfirmationModal = function(message, onConfirm) {
+            modalMessage.textContent = message;
+            modalSpinner.style.display = 'none';
+            modalButtons.innerHTML = '';
+
+            const confirmBtn = document.createElement('button');
+            confirmBtn.textContent = 'Confirmar';
+            confirmBtn.className = 'brazo-app-btn';
+            confirmBtn.style.backgroundColor = 'var(--color-secondary)';
+            confirmBtn.style.borderColor = 'var(--color-secondary)';
+            confirmBtn.onclick = () => {
+                onConfirm();
+                window.hideModal();
+            };
+
+            const cancelBtn = document.createElement('button');
+            cancelBtn.textContent = 'Cancelar';
+            cancelBtn.className = 'brazo-app-btn brazo-app-btn-secondary';
+            cancelBtn.onclick = window.hideModal;
+
+            modalButtons.appendChild(confirmBtn);
+            modalButtons.appendChild(cancelBtn);
+            modal.classList.add('active');
+        }
+
+        document.body.addEventListener('click', e => {
+            const targetButton = e.target.closest('[data-target]');
+            if (targetButton) {
+                editingRoutineId = null;
+                showSection(targetButton.dataset.target);
+            }
+        });
+
+        // --- FUNCIONALIDAD DE REGISTRO Y LOGIN ---
+        function toggleAuthMode() {
+            if (loginForm.style.display !== 'none') {
+                loginForm.style.display = 'none';
+                registerForm.style.display = 'block';
+                toggleAuthModeBtn.textContent = '¿Ya tienes cuenta? Inicia sesión';
+            } else {
+                loginForm.style.display = 'block';
+                registerForm.style.display = 'none';
+                toggleAuthModeBtn.textContent = '¿No tienes cuenta? Regístrate';
+            }
+        }
+        toggleAuthModeBtn.addEventListener('click', toggleAuthMode);
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('register-email').value.trim();
+            const password = document.getElementById('register-password').value;
+            const passwordConfirm = document.getElementById('register-password-confirm').value;
+
+            if (password !== passwordConfirm) {
+                showModal('Las contraseñas no coinciden.', hideModal, false, 'error');
+                return;
+            }
+            if (password.length < 6) {
+                showModal('La contraseña debe tener al menos 6 caracteres.', hideModal, false, 'error');
+                return;
+            }
+            window.showModal("Creando cuenta...", null, true);
+            createUserWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    showModal('Cuenta creada. ¡Bienvenida!', () => hideModal(), false, 'success');
+                })
+                .catch((error) => {
+                    const friendlyError = {
+                        'auth/email-already-in-use': "El email ya está en uso.",
+                        'auth/invalid-email': "El email no es válido.",
+                        'auth/weak-password': "La contraseña es demasiado débil."
+                    }[error.code] || "Error al crear la cuenta.";
+                    showModal(friendlyError, hideModal, false, 'error');
+                });
+        });
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            window.showModal("Verificando...", null, true);
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    window.showModal('¡Inicio de sesión exitoso!', () => window.hideModal(), false, 'success');
+                })
+                .catch(() => {
+                    window.showModal("Email o contraseña incorrectos.", () => window.hideModal(), false, 'error');
+                });
+        });
+
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            signOut(auth).catch((error) => {
+                window.showModal(`Error al cerrar sesión: ${error.message}`, () => window.hideModal(), false, 'error');
+            });
+        });
+
+        // --- MANEJADOR DE ESTADO DE AUTENTICACIÓN ---
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUserId = user.uid;
+                welcomeMessage.innerHTML = `Bienvenida de nuevo, <strong>${user.email.split('@')[0]}</strong>. ¿Lista para construir tu mejor versión?`;
+                window.showSection('welcome');
+                // ¡IMPORTANTE! Cuando el usuario inicia sesión, revisamos su estado de suscripción
+                checkUserSubscriptionStatus();
+            } else {
+                currentUserId = null;
+                window.showSection('login-view');
+            }
+        });
+
+
+        // --- LÓGICA PARA CREACIÓN DE RUTINAS PERSONALIZADAS ---
+        function loadCustomRoutineCreator() {
+            editingRoutineId = null;
+            selectedCustomExercises = [];
+            filteredExercises = [...exerciseDatabase];
+            customRoutineNameInput.value = '';
+            exerciseSearchInput.value = '';
+            categoryFilter.value = '';
+            equipmentFilter.value = '';
+            levelFilter.value = '';
+            variationFilter.value = '';
+            updateAvailableExercisesList();
+            updateSelectedExercisesList();
+            updateSaveButtonState();
+        }
+
+        function filterExercises() {
+            const searchTerm = exerciseSearchInput.value.toLowerCase();
+            const categoryTerm = categoryFilter.value;
+            const equipmentTerm = equipmentFilter.value;
+            const levelTerm = levelFilter.value;
+            const variationTerm = variationFilter.value;
+
+            filteredExercises = exerciseDatabase.filter(exercise => {
+                const matchesSearch = exercise.nombre.toLowerCase().includes(searchTerm);
+                const matchesEquipment = !equipmentTerm || exercise.equipo.includes(equipmentTerm);
+                const matchesLevel = !levelTerm || exercise.nivel === levelTerm;
+                const matchesVariation = !variationTerm || exercise.tipo_variacion === variationTerm;
+
+                let matchesCategory = false;
+                if (!categoryTerm) {
+                    matchesCategory = true;
+                } else if (categoryTerm === 'compuestos') {
+                    matchesCategory = exercise.categoria.includes('piernas') && exercise.categoria.includes('gluteos');
+                } else if (categoryTerm === 'gluteos') {
+                    matchesCategory = exercise.categoria.includes('gluteos');
+                } else if (categoryTerm === 'piernas') {
+                    matchesCategory = exercise.categoria.includes('piernas');
+                }
+                
+                return matchesSearch && matchesEquipment && matchesLevel && matchesCategory && matchesVariation;
+            });
+
+            updateAvailableExercisesList();
+        }
+
+        function updateAvailableExercisesList() {
+            availableExercisesContainer.innerHTML = '';
+            
+            filteredExercises.forEach(exercise => {
+                const isSelected = selectedCustomExercises.some(selected => selected.nombre === exercise.nombre);
+                
+                const exerciseItem = document.createElement('div');
+                exerciseItem.className = `exercise-item ${isSelected ? 'selected' : ''}`;
+                exerciseItem.innerHTML = `
+                    <div class="exercise-name">${exercise.nombre}</div>
+                    <div class="exercise-category">${exercise.tipo_variacion === 'variante' ? 'Variante' : 'Clásico'}</div>
+                `;
+                
+                exerciseItem.addEventListener('click', () => {
+                    if (isSelected) {
+                        removeExerciseFromSelection(exercise.nombre);
+                    } else {
+                        addExerciseToSelection(exercise);
+                    }
+                });
+                
+                availableExercisesContainer.appendChild(exerciseItem);
+            });
+        }
+
+        function addExerciseToSelection(exercise) {
+            const newExercise = { ...exercise, sets: '3', reps: '10-12' };
+            selectedCustomExercises.push(newExercise);
+            updateAvailableExercisesList();
+            updateSelectedExercisesList();
+            updateSaveButtonState();
+        }
+
+        function removeExerciseFromSelection(exerciseName) {
+            selectedCustomExercises = selectedCustomExercises.filter(ex => ex.nombre !== exerciseName);
+            updateAvailableExercisesList();
+            updateSelectedExercisesList();
+            updateSaveButtonState();
+        }
+
+        function updateSelectedExercisesList() {
+            selectedCount.textContent = selectedCustomExercises.length;
+            
+            if (selectedCustomExercises.length === 0) {
+                selectedExercisesList.innerHTML = '<p style="color: var(--color-accent); text-align: center;">Selecciona ejercicios de la lista superior</p>';
+                return;
+            }
+            
+            selectedExercisesList.innerHTML = '';
+            
+            selectedCustomExercises.forEach((exercise, index) => {
+                const selectedItem = document.createElement('div');
+                selectedItem.className = 'selected-exercise-item';
+                selectedItem.innerHTML = `
+                    <div class="selected-exercise-info">
+                        <div class="selected-exercise-name">${exercise.nombre}</div>
+                        <div class="selected-exercise-settings">
+                            <input type="text" placeholder="Sets" value="${exercise.sets}" data-index="${index}" data-field="sets">
+                            <input type="text" placeholder="Reps" value="${exercise.reps}" data-index="${index}" data-field="reps">
+                        </div>
+                    </div>
+                    <button class="remove-exercise-btn" data-exercise="${exercise.nombre}">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                `;
+                
+                selectedExercisesList.appendChild(selectedItem);
+            });
+
+            selectedExercisesList.querySelectorAll('input').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const index = parseInt(e.target.dataset.index);
+                    const field = e.target.dataset.field;
+                    selectedCustomExercises[index][field] = e.target.value;
+                });
+            });
+
+            selectedExercisesList.querySelectorAll('.remove-exercise-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const exerciseName = e.target.closest('.remove-exercise-btn').dataset.exercise;
+                    removeExerciseFromSelection(exerciseName);
+                });
+            });
+        }
+
+        function updateSaveButtonState() {
+            const hasName = customRoutineNameInput.value.trim().length > 0;
+            const hasExercises = selectedCustomExercises.length > 0;
+            saveCustomRoutineBtn.disabled = !(hasName && hasExercises);
+        }
+
+        async function saveCustomRoutine() {
+            if (!currentUserId) {
+                showModal('Debes iniciar sesión para guardar rutinas.', hideModal, false, 'error');
+                return;
+            }
+            const routineName = customRoutineNameInput.value.trim();
+            if (!routineName) {
+                showModal('Por favor, introduce un nombre para tu rutina.', hideModal, false, 'error');
+                return;
+            }
+            if (selectedCustomExercises.length === 0) {
+                showModal('Por favor, selecciona al menos un ejercicio.', hideModal, false, 'error');
+                return;
+            }
+
+            const routineData = {
+                name: routineName,
+                exercises: selectedCustomExercises.map(ex => ({ name: ex.nombre, sets: ex.sets, reps: ex.reps })),
+                createdAt: new Date().toISOString(),
+                userId: currentUserId
+            };
+
+            showModal('Guardando rutina...', null, true);
+            try {
+                if (editingRoutineId) {
+                    const routineRef = doc(db, 'users', currentUserId, 'customRoutines', editingRoutineId);
+                    await setDoc(routineRef, routineData, { merge: true });
+                } else {
+                    const collectionRef = collection(db, 'users', currentUserId, 'customRoutines');
+                    await addDoc(collectionRef, routineData);
+                }
+                editingRoutineId = null;
+                showModal('¡Rutina guardada en tu cuenta!', () => {
+                    hideModal();
+                    showSection('saved-routines-view');
+                }, false, 'success');
+            } catch (error) {
+                console.error("Error guardando rutina en Firestore: ", error);
+                showModal('Error al guardar la rutina. Revisa tu conexión y los permisos de Firestore.', hideModal, false, 'error');
+            }
+        }
+        
+        async function loadSavedRoutines() {
+            if (!currentUserId) return;
+            savedRoutinesList.innerHTML = '<div class="spinner"></div>';
+
+            try {
+                const q = query(collection(db, 'users', currentUserId, 'customRoutines'));
+                const querySnapshot = await getDocs(q);
+                
+                savedRoutinesList.innerHTML = ''; 
+
+                if (querySnapshot.empty) {
+                    savedRoutinesList.innerHTML = `
+                        <div style="text-align: center; color: var(--color-accent); padding: 40px;">
+                            <i class="fa-solid fa-dumbbell" style="font-size: 3em; margin-bottom: 20px; opacity: 0.5;"></i>
+                            <p>No tienes rutinas guardadas aún.</p>
+                            <p>¡Crea tu primera rutina personalizada!</p>
+                            <button class="brazo-app-btn brazo-app-btn-secondary" data-target="custom-routine-creator">
+                                Crear Rutina
+                            </button>
+                        </div>
+                    `;
+                    return;
+                }
+
+                querySnapshot.forEach(doc => {
+                    const routine = { id: doc.id, ...doc.data() };
+                    const routineCard = document.createElement('div');
+                    routineCard.className = 'saved-routine-card';
+                    routineCard.innerHTML = `
+                        <div class="saved-routine-header">
+                            <div class="saved-routine-name">${routine.name}</div>
+                            <div style="font-size: 0.8em; color: var(--color-accent);">
+                                ${new Date(routine.createdAt).toLocaleDateString()}
+                            </div>
+                        </div>
+                        <div class="saved-routine-exercises">
+                            ${routine.exercises.length} ejercicios: ${routine.exercises.slice(0, 3).map(ex => ex.name).join(', ')}${routine.exercises.length > 3 ? '...' : ''}
+                        </div>
+                        <div class="saved-routine-actions">
+                            <button class="routine-action-btn start-routine" data-routine-id="${routine.id}"><i class="fa-solid fa-play"></i> Iniciar</button>
+                            <button class="routine-action-btn edit-routine" data-routine-id="${routine.id}"><i class="fa-solid fa-edit"></i> Editar</button>
+                            <button class="routine-action-btn delete" data-routine-id="${routine.id}"><i class="fa-solid fa-trash"></i> Eliminar</button>
+                        </div>`;
+                    savedRoutinesList.appendChild(routineCard);
+                });
+
+                savedRoutinesList.querySelectorAll('.start-routine').forEach(btn => btn.addEventListener('click', e => startCustomRoutine(e.currentTarget.dataset.routineId)));
+                savedRoutinesList.querySelectorAll('.edit-routine').forEach(btn => btn.addEventListener('click', e => editCustomRoutine(e.currentTarget.dataset.routineId)));
+                savedRoutinesList.querySelectorAll('.delete').forEach(btn => btn.addEventListener('click', e => deleteCustomRoutine(e.currentTarget.dataset.routineId)));
+
+            } catch(error) {
+                console.error("Error cargando rutinas: ", error);
+                savedRoutinesList.innerHTML = '<p>No se pudieron cargar las rutinas.</p>';
+            }
+        }
+
+        async function startCustomRoutine(routineId) {
+            const docRef = doc(db, 'users', currentUserId, 'customRoutines', routineId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const routine = docSnap.data();
+                const formattedRoutine = {
+                    name: routine.name,
+                    exercises: routine.exercises.map(ex => ({ ...ex, type: 'Principal' }))
+                };
+                currentGeneratedRoutine = formattedRoutine;
+                displayGeneratedRoutine(formattedRoutine);
+            } else {
+                showModal("No se encontró la rutina.", hideModal, false, 'error');
+            }
+        }
+
+        async function editCustomRoutine(routineId) {
+            editingRoutineId = routineId;
+            const docRef = doc(db, 'users', currentUserId, 'customRoutines', routineId);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                const routine = docSnap.data();
+                customRoutineNameInput.value = routine.name;
+                selectedCustomExercises = routine.exercises.map(ex => {
+                    const exerciseData = exerciseDatabase.find(dbEx => dbEx.nombre === ex.name);
+                    return { ...exerciseData, sets: ex.sets, reps: ex.reps };
+                }).filter(Boolean);
+                
+                updateSelectedExercisesList();
+                updateSaveButtonState();
+                showSection('custom-routine-creator');
+            }
+        }
+
+        function deleteCustomRoutine(routineId) {
+            showConfirmationModal(
+                '¿Estás segura de que quieres eliminar esta rutina?',
+                async () => {
+                    showModal("Eliminando rutina...", null, true);
+                    try {
+                        await deleteDoc(doc(db, 'users', currentUserId, 'customRoutines', routineId));
+                        loadSavedRoutines();
+                        hideModal();
+                    } catch (error) {
+                        showModal("No se pudo eliminar la rutina.", hideModal, false, 'error');
+                    }
+                }
+            );
+        }
+
+        // Event listeners
+        exerciseSearchInput.addEventListener('input', filterExercises);
+        categoryFilter.addEventListener('change', filterExercises);
+        equipmentFilter.addEventListener('change', filterExercises);
+        levelFilter.addEventListener('change', filterExercises);
+        variationFilter.addEventListener('change', filterExercises);
+        customRoutineNameInput.addEventListener('input', updateSaveButtonState);
+        saveCustomRoutineBtn.addEventListener('click', saveCustomRoutine);
+
+        // --- LÓGICA DEL GENERADOR DE RUTINAS CON GEMINI ---
+        async function generateRoutineWithGemini(preferences, isReplacement = false, exerciseToReplace = null) {
+            showModal(isReplacement ? "Buscando reemplazo..." : "Contactando a la IA...", null, true);
+
+            const availableExercises = exerciseDatabase
+                .filter(ex => preferences.equipamiento.some(eq => ex.equipo.includes(eq)))
+                .filter(ex => !preferences.tipo_variacion_ia || ex.tipo_variacion === preferences.tipo_variacion_ia)
+                .map(ex => ex.nombre);
+            
+            if (availableExercises.length === 0) {
+                showModal(`No se encontraron ejercicios con el equipamiento y preferencia seleccionados.`, hideModal, false, 'error');
+                return;
+            }
+
+            let prompt;
+            if (isReplacement) {
+                prompt = `Eres una entrenadora experta. La usuaria quiere reemplazar "${exerciseToReplace}". Genera UN ejercicio de reemplazo similar, para nivel ${preferences.nivel} y equipo ${preferences.equipamiento.join(", ")}. El reemplazo DEBE ser diferente y estar en esta lista: [${availableExercises.filter(e => e !== exerciseToReplace).join(", ")}]. Devuelve solo JSON: {"name": "Nombre", "sets": "3", "reps": "8-12", "type": "Principal"}`;
+            } else {
+                prompt = `Eres una entrenadora experta en glúteos. Crea una rutina para una usuaria con: Objetivo: ${preferences.objetivo_principal}, Enfoque: ${preferences.enfoque_dia}, Nivel: ${preferences.nivel}, Tiempo: ${preferences.tiempo}, Estilo: ${preferences.estilo_entrenamiento}, Volumen: ${preferences.volumen_entrenamiento}, Preferencia de Ejercicios: ${preferences.tipo_variacion_ia || 'Mixto'}, Limitaciones: ${preferences.limitaciones}. IMPORTANTE: Usa SOLO ejercicios de esta lista: [${availableExercises.join(", ")}]. Devuelve solo JSON: {"routineName": "Nombre Creativo", "exercises": [{"name": "Ejercicio", "sets": "3", "reps": "10", "type": "Principal"}]}`;
+            }
+
+            const schema = isReplacement ? {
+                type: "OBJECT",
+                properties: { name: { type: "STRING" }, sets: { type: "STRING" }, reps: { type: "STRING" }, type: { type: "STRING" } },
+                required: ["name", "sets", "reps", "type"]
+            } : {
+                type: "OBJECT",
+                properties: { routineName: { type: "STRING" }, exercises: { type: "ARRAY", items: { type: "OBJECT", properties: { name: { type: "STRING" }, sets: { type: "STRING" }, reps: { type: "STRING" }, type: { type: "STRING" } }, required: ["name", "sets", "reps", "type"] } } },
+                required: ["routineName", "exercises"]
+            };
+
+            try {
+                const geminiApiKey = "AIzaSyCm-K7yB0wIjcCS47gwiUd98yAXvcE36vI";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${geminiApiKey}`;
+                
+                const payload = { contents: [{ parts: [{ text: prompt }] }], generationConfig: { responseMimeType: "application/json", responseSchema: schema } };
+                
+                const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`Error de la API: ${errorData.error?.message || response.statusText}`);
+                }
+                const result = await response.json();
+                
+                const jsonText = result.candidates[0].content.parts[0].text;
+                const data = JSON.parse(jsonText);
+                
+                if (isReplacement) {
+                    return data;
+                } else {
+                    if (!data.exercises || data.exercises.length === 0) throw new Error("La IA no devolvió ejercicios.");
+                    currentGeneratedRoutine = data;
+                    displayGeneratedRoutine(data);
+                    hideModal();
+                }
+            } catch (error) {
+                showModal(`La IA no pudo generar una rutina. (${error.message})`, hideModal, false, 'error');
+            }
+        }
+        
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            lastUserPreferences = {
+                objetivo_principal: form.objetivo_principal.value,
+                enfoque_dia: form.enfoque_dia.value,
+                estilo_entrenamiento: form.estilo_entrenamiento.value,
+                volumen_entrenamiento: form.volumen_entrenamiento.value,
+                nivel: form.nivel.value,
+                tiempo: `${form.tiempo.value} minutos`,
+                equipamiento: Array.from(form.querySelectorAll('input[name="equipamiento"]:checked')).map(el => el.value),
+                limitaciones: form.limitaciones.value || 'Ninguna',
+                tipo_variacion_ia: form.tipo_variacion_ia.value
+            };
+
+            if (lastUserPreferences.equipamiento.length === 0) {
+                showModal("Por favor, selecciona al menos un tipo de equipamiento.", hideModal, false, 'error');
+                return;
+            }
+            generateRoutineWithGemini(lastUserPreferences);
+        });
+
+        surpriseBtn.addEventListener('click', () => {
+            const randomOption = (select) => select.options[Math.floor(Math.random() * select.options.length)].value;
+            
+            form.objetivo_principal.value = randomOption(form.objetivo_principal);
+            form.nivel.value = randomOption(form.nivel);
+            form.enfoque_dia.value = randomOption(form.enfoque_dia);
+            form.estilo_entrenamiento.value = randomOption(form.estilo_entrenamiento);
+            form.volumen_entrenamiento.value = randomOption(form.volumen_entrenamiento);
+            form.tipo_variacion_ia.value = randomOption(form.tipo_variacion_ia);
+            
+            form.querySelectorAll('input[name="equipamiento"]').forEach(cb => {
+                cb.checked = Math.random() > 0.5;
+            });
+            if (!form.querySelector('input[name="equipamiento"]:checked')) {
+                form.querySelector('input[value="peso corporal"]').checked = true;
+            }
+            form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        });
+        
+        function displayGeneratedRoutine(routine) {
+            exercisesWrapper.innerHTML = '';
+            document.getElementById('workout-title').textContent = routine.name || routine.routineName;
+            document.getElementById('workout-description').innerHTML = `Completa los sets y marca tu progreso con un toque. ¡Concéntrate en la técnica!`;
+            
+            currentExerciseIndex = 0;
+            
+            routine.exercises.forEach((exercise, index) => {
+                const exerciseData = exerciseDatabase.find(dbEx => dbEx.nombre === exercise.name);
+                if (exerciseData) {
+                    const exerciseElement = createExerciseHTML(exerciseData, exercise.sets, exercise.reps, `exercise-${index}`);
+                    exercisesWrapper.appendChild(exerciseElement);
+                }
+            });
+            
+            const allExercises = exercisesWrapper.querySelectorAll('.exercise-container');
+            allExercises.forEach(ex => ex.style.display = 'none');
+            if (allExercises.length > 0) {
+                allExercises[0].classList.add('active');
+                allExercises[0].style.display = 'block';
+            }
+
+            if (startRoutineBtn) startRoutineBtn.style.display = 'inline-block';
+            if (finishRoutineBtn) finishRoutineBtn.style.display = 'none';
+
+            resetTimers();
+            showSection('workout-view');
+        }
+
+        function createExerciseHTML(exercise, sets, reps, id) {
+            const container = document.createElement('div');
+            container.className = 'exercise-container';
+            container.id = `exercise-${id}`;
+            container.dataset.exerciseName = exercise.nombre;
+
+            const vimeoUrlPattern = /(?:vimeo\.com\/|player\.vimeo\.com\/video\/)(\d+)/;
+            const match = exercise.link_video.match(vimeoUrlPattern);
+            let vimeoContent = '';
+            let vimeoId = null;
+
+            if (match && match[1]) {
+                vimeoId = match[1];
+                vimeoContent = `<div class="video-overlay"><i class="fa-solid fa-play"></i></div>`;
+            } else {
+                vimeoContent = `<div class="video-error-message"><i class="fa-solid fa-triangle-exclamation"></i> Video no disponible.</div>`;
+            }
+            
+            container.innerHTML = `
+                <div class="exercise-header">
+                    <h3>${exercise.nombre}</h3>
+                    <button class="replace-exercise-btn" title="Reemplazar Ejercicio"><i class="fa-solid fa-arrows-rotate"></i></button>
+                </div>
+                <p class="set-target">${sets} series <span>de</span> ${reps} reps</p>
+                <div class="exercise-gif-placeholder" data-vimeo-id="${vimeoId}">
+                    ${vimeoContent}
+                </div>
+                <button class="technique-toggle-btn">Ver Técnica <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="exercise-details">
+                    <p>${exercise.details}</p>
+                </div>
+                <div class="sets-tracker-pro">
+                    ${[...Array(parseInt(sets) || 3)].map((_, i) => `
+                        <div class="set-item" data-set-index="${i+1}">
+                            <span class="set-number">Set ${i+1}/${sets}</span>
+                            <div class="set-target">${reps} <span>reps</span></div>
+                            <div class="set-actions">
+                                <div class="set-check-icon"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+                <button id="next-exercise-btn-${id}" class="brazo-app-btn" style="display:none; margin-top: 20px;">Siguiente Ejercicio <i class="fa-solid fa-arrow-right"></i></button>
+            `;
+
+            container.querySelector('.replace-exercise-btn').addEventListener('click', async (e) => {
+                e.stopPropagation();
+                await replaceExercise(container);
+            });
+            
+            container.querySelector('.technique-toggle-btn').addEventListener('click', (e) => {
+                e.stopPropagation();
+                const btn = e.currentTarget;
+                const details = container.querySelector('.exercise-details');
+                btn.classList.toggle('open');
+                details.classList.toggle('visible');
+            });
+
+            container.querySelectorAll('.set-item').forEach(setItem => {
+                setItem.addEventListener('click', (e) => {
+                    if(mainTimerSeconds === 0) {
+                        showModal("Por favor, haz clic en 'Comenzar Rutina' para iniciar el tiempo.", hideModal, false, 'info');
+                        return;
+                    }
+                    e.currentTarget.classList.toggle('completed');
+                    playSound('complete');
+                    checkAllSetsCompleted(container);
+                });
+            });
+
+            const videoPlaceholder = container.querySelector('.exercise-gif-placeholder');
+            if (videoPlaceholder && vimeoId) {
+                videoPlaceholder.addEventListener('click', () => {
+                    videoPlaceholder.innerHTML = `<iframe src="https://player.vimeo.com/video/${vimeoId}?badge=0&autopause=0&player_id=0&app_id=58479&loop=1&autoplay=1&muted=1&controls=1" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" title="${exercise.nombre}"></iframe>`;
+                    videoPlaceholder.style.cursor = 'default';
+                });
+            }
+
+            const currentNextExerciseBtn = container.querySelector(`#next-exercise-btn-${id}`);
+            if (currentNextExerciseBtn) {
+                currentNextExerciseBtn.addEventListener('click', () => {
+                    stopTimers();
+                    advanceToNextExercise();
+                });
+            }
+
+            return container;
+        }
+
+        async function replaceExercise(exerciseContainer) {
+            const originalExerciseName = exerciseContainer.dataset.exerciseName;
+            const preferences = lastUserPreferences; 
+            
+            try {
+                const newExercise = await generateRoutineWithGemini(preferences, true, originalExerciseName);
+                if (newExercise) {
+                    const newExerciseData = exerciseDatabase.find(ex => ex.nombre === newExercise.name);
+                    if (newExerciseData) {
+                        const newExerciseHtml = createExerciseHTML(newExerciseData, newExercise.sets, newExercise.reps, `replaced-${Date.now()}`);
+                        exerciseContainer.replaceWith(newExerciseHtml);
+                        
+                        const allExercises = Array.from(exercisesWrapper.querySelectorAll('.exercise-container'));
+                        const newExerciseIndex = allExercises.findIndex(el => el.id === newExerciseHtml.id);
+                        if (newExerciseIndex !== -1) {
+                            currentExerciseIndex = newExerciseIndex;
+                            allExercises.forEach(ex => ex.style.display = 'none');
+                            newExerciseHtml.classList.add('active');
+                            newExerciseHtml.style.display = 'block';
+                        }
+                        
+                        showModal(`'${originalExerciseName}' reemplazado por '${newExercise.name}'.`, hideModal, false, 'success');
+                    }
+                }
+            } catch (error) {
+                showModal(`No se pudo reemplazar el ejercicio. (${error.message})`, hideModal, false, 'error');
+            }
+        }
+
+        function checkAllSetsCompleted(exerciseContainer) {
+            const sets = exerciseContainer.querySelectorAll('.set-item');
+            const completedSets = exerciseContainer.querySelectorAll('.set-item.completed');
+            if (sets.length === completedSets.length) {
+                playSound('next');
+                startRestTimer();
+                const currentNextExerciseBtn = exerciseContainer.querySelector(`.brazo-app-btn[id^="next-exercise-btn-"]`);
+                if (currentNextExerciseBtn) {
+                    currentNextExerciseBtn.style.display = 'inline-block';
+                    currentNextExerciseBtn.disabled = false;
+                }
+            }
+        }
+        
+        function advanceToNextExercise() {
+            const allExercises = Array.from(exercisesWrapper.querySelectorAll('.exercise-container'));
+            const activeExercise = allExercises[currentExerciseIndex];
+            if (activeExercise) {
+                activeExercise.classList.remove('active');
+                activeExercise.style.display = 'none';
+
+                const prevNextExerciseBtn = activeExercise.querySelector(`.brazo-app-btn[id^="next-exercise-btn-"]`);
+                if (prevNextExerciseBtn) {
+                    prevNextExerciseBtn.style.display = 'none';
+                    prevNextExerciseBtn.disabled = true;
+                }
+            }
+
+            currentExerciseIndex++;
+
+            if (currentExerciseIndex >= allExercises.length) {
+                finishRoutine();
+            } else {
+                const nextExercise = allExercises[currentExerciseIndex];
+                if (nextExercise) {
+                    nextExercise.classList.add('active');
+                    nextExercise.style.display = 'block';
+                    nextExercise.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        }
+
+        // --- LÓGICA DE TIMERS Y FLUJO DE ENTRENAMIENTO ---
+        if (startRoutineBtn) {
+            startRoutineBtn.addEventListener('click', () => {
+                startRoutine();
+                playSound('whistle');
+            });
+        }
+        if (finishRoutineBtn) {
+            finishRoutineBtn.addEventListener('click', finishRoutine);
+        }
+        if (backToGeneratorBtn) {
+            backToGeneratorBtn.addEventListener('click', () => {
+                stopTimers();
+                showSection('welcome');
+            });
+        }
+
+        function startRoutine() {
+            if (startRoutineBtn) startRoutineBtn.style.display = 'none'; 
+            if (finishRoutineBtn) finishRoutineBtn.style.display = 'inline-block';
+            
+            mainTimerSeconds = 0;
+            mainTimerInterval = setInterval(() => {
+                mainTimerSeconds++;
+                document.getElementById('timer').textContent = new Date(mainTimerSeconds * 1000).toISOString().substr(11, 8);
+            }, 1000);
+        }
+
+        function finishRoutine() {
+            stopTimers();
+            const totalTime = new Date(mainTimerSeconds * 1000).toISOString().substr(11, 8);
+            document.getElementById('final-results').innerHTML = `<p><strong>Tiempo Total:</strong> ${totalTime}</p>`;
+            showSection('results-view');
+            playSound('final');
+        }
+
+        function startRestTimer() {
+            let restSeconds = REST_DURATION;
+            const restTimerDisplay = document.getElementById('rest-timer');
+            const restWrapper = document.getElementById('rest-timer-wrapper');
+            
+            restWrapper.style.display = 'block';
+            restTimerDisplay.textContent = new Date(restSeconds * 1000).toISOString().substr(14, 5);
+
+            restTimerInterval = setInterval(() => {
+                restSeconds--;
+                restTimerDisplay.textContent = new Date(restSeconds * 1000).toISOString().substr(14, 5);
+                if (restSeconds <= 0) {
+                    clearInterval(restTimerInterval);
+                    restWrapper.style.display = 'none';
+                    playSound('start');
+                }
+            }, 1000);
+        }
+        
+        function stopTimers() {
+            clearInterval(mainTimerInterval);
+            clearInterval(restTimerInterval);
+        }
+
+        function resetTimers() {
+            stopTimers();
+            mainTimerSeconds = 0;
+            document.getElementById('timer').textContent = '00:00:00';
+            document.getElementById('rest-timer-wrapper').style.display = 'none';
+        }
+
+        // --- UTILIDADES (Sonidos, etc.) ---
+        function playSound(type) {
+            try {
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                gainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.3, audioCtx.currentTime + 0.01);
+
+                if (type === 'complete') { oscillator.type = 'sine'; oscillator.frequency.setValueAtTime(600, audioCtx.currentTime); } 
+                else if (type === 'next') { oscillator.type = 'triangle'; oscillator.frequency.setValueAtTime(800, audioCtx.currentTime); } 
+                else if (type === 'start') { oscillator.type = 'square'; oscillator.frequency.setValueAtTime(440, audioCtx.currentTime); } 
+                else if (type === 'final') { oscillator.type = 'sawtooth'; oscillator.frequency.setValueAtTime(220, audioCtx.currentTime); gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.1); }
+                else if (type === 'whistle') {
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime);
+                    gainNode.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.05);
+                    gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.3);
+                    oscillator.stop(audioCtx.currentTime + 0.3);
+                    return;
+                }
+                
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.2);
+                oscillator.stop(audioCtx.currentTime + 0.2);
+            } catch(e) { console.warn("Web Audio API no soportada o con errores.", e); }
+        }
+        
+        // --- LÓGICA DE PROGRESO CON FIRESTORE ---
+        async function saveProgressData(data) {
+            if (!currentUserId) return;
+            showModal("Guardando...", null, true);
+            try {
+                await setDoc(doc(db, 'users', currentUserId, 'progress', 'main'), data, { merge: true });
+                showModal("Progreso guardado.", hideModal, false, 'success');
+                loadProgressData();
+            } catch (error) {
+                showModal("Error al guardar.", hideModal, false, 'error');
+            }
+        }
+
+        async function loadProgressData() {
+            if (!currentUserId) return;
+            const displayDiv = document.getElementById('progress-display');
+            displayDiv.innerHTML = '<div class="spinner"></div>';
+            
+            try {
+                const docSnap = await getDoc(doc(db, 'users', currentUserId, 'progress', 'main'));
+                displayDiv.innerHTML = '';
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+                    ['peso', 'cintura', 'cadera', 'piernas', 'metas'].forEach(key => {
+                        if(document.getElementById(`progress-${key}`)) document.getElementById(`progress-${key}`).value = data[key] || '';
+                    });
+                } else {
+                    displayDiv.innerHTML = '<p style="margin-top:20px;">Aún no has guardado tu progreso.</p>';
+                }
+            } catch(error) {
+                displayDiv.innerHTML = '<p>Error al cargar tus datos.</p>';
+            }
+        }
+
+        progressForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const data = {
+                peso: document.getElementById('progress-peso').value,
+                cintura: document.getElementById('progress-cintura').value,
+                cadera: document.getElementById('progress-cadera').value,
+                piernas: document.getElementById('progress-piernas').value,
+                metas: document.getElementById('progress-metas').value
+            };
+            saveProgressData(data);
+        });
+        
+        // --- INICIALIZACIÓN DE COMPONENTES AL CARGAR EL DOM ---
+        tiempoOutput.textContent = tiempoSlider.value;
+        tiempoSlider.addEventListener('input', () => {
+            tiempoOutput.textContent = tiempoSlider.value;
+        });
+        
+        // --- LÓGICA DE INSTALACIÓN PWA (Add to Home Screen) ---
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevenir que el mini-infobar de Chrome aparezca
+            e.preventDefault();
+            // Guardar el evento para poder llamarlo más tarde
+            deferredPrompt = e;
+            // Mostrar nuestro botón de instalación personalizado
+            console.log('`beforeinstallprompt` event was fired.');
+            installPwaBtn.style.display = 'inline-block';
+        });
+
+        installPwaBtn.addEventListener('click', async () => {
+            // Ocultar nuestro botón, ya que solo se puede usar una vez
+            installPwaBtn.style.display = 'none';
+            // Mostrar el aviso de instalación del navegador
+            deferredPrompt.prompt();
+            // Esperar a que el usuario responda
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to the install prompt: ${outcome}`);
+            // Ya no necesitaremos el evento guardado
+            deferredPrompt = null;
+        });
+
+        // --- LÓGICA DE SERVICE WORKER PARA PWA ---
+        if ('serviceWorker' in navigator) {
+            const swContent = `
+                const CACHE_NAME = 'evolutionglute-ia-cache-v3';
+                const urlsToCache = [
+                    '/', './',
+                    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css',
+                    'https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap',
+                    'https://player.vimeo.com/api/player.js',
+                    'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js',
+                    'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js',
+                    'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js'
+                ];
+                self.addEventListener('install', e => e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(urlsToCache))));
+                self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request))));
+                self.addEventListener('activate', e => {
+                    const cacheWhitelist = [CACHE_NAME];
+                    e.waitUntil(caches.keys().then(names => Promise.all(names.map(name => {
+                        if (cacheWhitelist.indexOf(name) === -1) return caches.delete(name);
+                    }))));
+                });
+            `;
+            const swBlob = new Blob([swContent], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(swBlob);
+            navigator.serviceWorker.register(swUrl)
+                .then(reg => console.log('ServiceWorker registrado:', reg.scope))
+                .catch(err => console.log('Error de ServiceWorker:', err));
+        }
+    });
+</script>
+
+</body>
+</html>
