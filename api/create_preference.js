@@ -25,7 +25,7 @@ export default async function handler(req, res) {
     const options = {
         method: 'POST',
         headers: {
-            'Authorization': `Bearer ${process.env.MP_ACCESS_TOKEN_TEST}`,
+            'Authorization': `Bearer ${process.env.MP_ACCESS_TOKEN}`,
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(body)
